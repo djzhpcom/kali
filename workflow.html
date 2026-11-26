@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="了解同心E站巡查卫士如何通过延迟缓冲、本地语音识别、违规检测和回溯消音处理直播音频。">
+  <title>工作原理｜同心E站巡查卫士</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="同心E站巡查卫士首页"><img src="./favicon.ico" alt="" width="36" height="36" class="brand-icon"><span class="brand-copy"><strong>同心E站</strong><span>巡查卫士</span></span></a>
+      <nav class="desktop-nav" aria-label="主导航"><a href="./features.html">产品能力</a><a href="./workflow.html" aria-current="page">工作原理</a><a href="./guide.html">使用指南</a><a href="./download.html">下载授权</a><a href="./faq.html">常见问题</a></nav>
+      <div class="header-actions"><button class="button button-small button-outline desktop-only" type="button" data-open-license>授权说明</button><a class="button button-small button-primary" href="./download.html">获取 Windows 版<span aria-hidden="true">↗</span></a><button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden><a href="./features.html">产品能力</a><a href="./workflow.html" aria-current="page">工作原理</a><a href="./guide.html">使用指南</a><a href="./download.html">下载授权</a><a href="./faq.html">常见问题</a><button type="button" data-open-license>查看授权说明</button></nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero section-shell" aria-labelledby="page-title">
+      <div class="container page-hero-grid">
+        <div><nav class="breadcrumb" aria-label="面包屑"><a href="./index.html">首页</a><span aria-hidden="true">/</span><span>工作原理</span></nav><span class="section-tag">工作原理</span><h1 id="page-title">一条音频链路，<br><span>接进你现有的直播。</span></h1><p class="page-lead">无需改变内容创作方式。巡查卫士接入麦克风与虚拟声卡，直播软件使用处理后的音频。</p><div class="hero-buttons"><a class="button button-primary button-large" href="./guide.html">查看设备配置<span aria-hidden="true">↗</span></a><a class="button button-ghost button-large" href="./index.html#product-demo">返回界面演示</a></div></div>
+        <div class="page-signal" aria-hidden="true"><div class="page-signal-head"><span class="status-dot"></span>48,000 Hz / LOCAL</div><strong>输入 <i>→</i> 缓冲 <i>→</i> 识别 <i>→</i> 输出</strong><div class="signal-track"><i></i><i></i><i></i><i></i><i></i><i></i><i class="signal-hit"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>默认延迟缓冲约 1.5 秒，为回溯处理预留时间</small></div>
+      </div>
+    </section>
+
+    <section class="problem-section section-shell" aria-labelledby="problem-title"><div class="container problem-grid"><div class="section-intro"><span class="section-tag">为实时语音设计</span><h2 id="problem-title">直播不是录播，<br>违规表达不会等你重来。</h2></div><div class="problem-copy"><p>一句口误、一种谐音、一段被拆开的表达，都可能在高语速的直播中瞬间播出。巡查卫士把识别、检测和声音处理接进同一条本机链路，在音频输出前完成处理。</p><p>它不能替代平台审核和人工判断，但能让直播多一层具体、可检查的防护。</p></div></div><div class="container signal-line" aria-hidden="true"><span>语音输入</span><div class="signal-track"><i></i><i></i><i></i><i></i><i class="signal-hit"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>处理后输出</span></div></section>
+
+    <section class="workflow-section section-shell" aria-labelledby="workflow-title"><div class="container"><div class="section-heading compact"><div><span class="section-tag">处理流程</span><h2 id="workflow-title">六个步骤，<br>在输出前完成巡查。</h2></div><p>音频与文本信号并行推进，命中结果再回溯到尚未输出的声音区间。</p></div><ol class="workflow-list"><li><span>01</span><div class="flow-icon mic-icon" aria-hidden="true">●</div><h3>采集语音</h3><p>从麦克风获取音频，检查输入电平。</p></li><li><span>02</span><div class="flow-icon" aria-hidden="true">▥</div><h3>延迟缓冲</h3><p>为识别和回溯处理预留时间。</p></li><li><span>03</span><div class="flow-icon" aria-hidden="true">Aa</div><h3>本地识别</h3><p>流式 ASR 将语音转换为文本。</p></li><li><span>04</span><div class="flow-icon" aria-hidden="true">⌕</div><h3>违规检测</h3><p>词表、变体与上下文共同判断。</p></li><li><span>05</span><div class="flow-icon hit-icon" aria-hidden="true">◼</div><h3>回溯消音</h3><p>按所选模式覆盖命中语音区间。</p></li><li><span>06</span><div class="flow-icon" aria-hidden="true">↗</div><h3>输出直播</h3><p>经虚拟声卡送入直播软件。</p></li></ol><div class="workflow-note"><span class="status-dot"></span><p><strong>接入前请检查输出设备。</strong>采集与输出采样率需一致，建议均设为 48kHz。输出设备异常时，程序会提示并禁用处理后的输出。</p></div></div></section>
+
+    <section class="tech-section section-shell" aria-labelledby="tech-title"><div class="container tech-grid"><div><span class="section-tag">链路细节</span><h2 id="tech-title">实时处理，<br>也需要明确边界。</h2><p>巡查卫士针对 Windows 桌面直播环境设计，处理结果会受设备、模型、词表与环境共同影响。</p></div><dl class="tech-list"><div><dt>音频与识别并行</dt><dd>独立线程处理音频与识别文本，避免把语音播放完全串在识别等待之后。</dd></div><div><dt>有界识别队列</dt><dd>识别任务进入有界队列，避免异常积压持续放大内存与处理延迟。</dd></div><div><dt>延迟缓冲回溯</dt><dd>音频先缓冲再输出，检测命中后覆盖对应区间，而不是只修改已经显示出的文本。</dd></div><div><dt>输出异常保护</dt><dd>处理后的输出设备不可用时，程序会提示并停止该路输出，避免误以为直播仍经过防护。</dd></div></dl></div></section>
+  </main>
+
+  <section class="final-cta section-shell" aria-labelledby="cta-title"><div class="container final-cta-inner"><div><span class="section-tag">开始配置</span><h2 id="cta-title">把处理后的声音，<br>送进直播软件。</h2></div><div><p>按照设备检查与四步接入指南，完成你的第一条本地音频链路。</p><a class="button button-primary button-large" href="./guide.html">打开使用指南<span aria-hidden="true">↗</span></a></div></div></section>
+  <footer class="site-footer"><div class="container footer-main"><a class="brand" href="./index.html"><img src="./favicon.ico" alt="" width="32" height="32" class="brand-icon"><span class="brand-copy"><strong>同心E站</strong><span>巡查卫士</span></span></a><p>面向 Windows 的本地离线直播语音巡查工具。</p><div class="footer-links"><a href="./features.html">产品能力</a><a href="./guide.html">使用指南</a><button type="button" data-open-license>授权说明</button><a href="./faq.html">常见问题</a></div></div><div class="container footer-bottom"><span>© 2026 同心E站. 保留所有权利。</span><span>识别与防护效果受实际环境影响，不构成合规保证。</span></div></footer>
+  <dialog class="info-dialog" id="license-dialog" aria-labelledby="license-dialog-title"><button class="dialog-close" type="button" aria-label="关闭授权说明">×</button><span class="section-tag">试用与授权</span><h2 id="license-dialog-title">先试用，再导入离线授权</h2><p>首次运行提供 7 天试用。正式授权与本机机器码绑定，无需网络验证或云端心跳。</p><ol class="license-steps"><li><span>1</span><div><strong>复制机器码</strong><p>打开“关于 - 授权信息”，复制本机机器码。</p></div></li><li><span>2</span><div><strong>获取授权文件</strong><p>将机器码提交给授权方，获取对应的 license.key。</p></div></li><li><span>3</span><div><strong>导入并启用</strong><p>在授权信息页导入文件，状态更新后开启实时防护。</p></div></li></ol><div class="dialog-notice">授权价格与联系方式将在正式渠道确认后补充，本页面不会收集机器码。</div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
