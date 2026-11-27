@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="同心E站巡查卫士常见问题：音频是否上传、延迟、识别边界、误报、虚拟声卡、系统支持与离线授权。">
+  <title>常见问题｜同心E站巡查卫士</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="同心E站巡查卫士首页"><img src="./favicon.ico" alt="" width="36" height="36" class="brand-icon"><span class="brand-copy"><strong>同心E站</strong><span>巡查卫士</span></span></a>
+      <nav class="desktop-nav" aria-label="主导航"><a href="./features.html">产品能力</a><a href="./workflow.html">工作原理</a><a href="./guide.html">使用指南</a><a href="./download.html">下载授权</a><a href="./faq.html" aria-current="page">常见问题</a></nav>
+      <div class="header-actions"><button class="button button-small button-outline desktop-only" type="button" data-open-license>授权说明</button><a class="button button-small button-primary" href="./download.html">查看 Windows 版<span aria-hidden="true">↗</span></a><button class="page-view-toggle" id="page-view-toggle" type="button" aria-pressed="false" aria-label="开启整页 3D 空间视角" title="开启整页 3D 空间视角"><span aria-hidden="true">◇</span><span class="page-view-label">页面 3D</span></button><button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="移动端导航" hidden><a href="./features.html">产品能力</a><a href="./workflow.html">工作原理</a><a href="./guide.html">使用指南</a><a href="./download.html">下载授权</a><a href="./faq.html" aria-current="page">常见问题</a><button type="button" data-open-license>查看授权说明</button></nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero page-hero-compact section-shell" aria-labelledby="page-title"><div class="container"><nav class="breadcrumb" aria-label="面包屑"><a href="./index.html">首页</a><span aria-hidden="true">/</span><span>常见问题</span></nav><span class="section-tag">常见问题</span><h1 id="page-title">开始之前，<br><span>你可能想知道。</span></h1><p class="page-lead">关于本地处理、直播延迟、识别边界、设备要求与授权的常见说明。</p></div></section>
+    <section class="faq-section section-shell" aria-labelledby="faq-title"><div class="container faq-grid"><div class="section-intro"><span class="section-tag">问题清单</span><h2 id="faq-title">把关键边界，<br>提前说清楚。</h2><p>没有找到答案？请通过正式授权渠道联系我们，官网暂未填写咨询方式。</p><a href="./guide.html" class="text-link">查看使用指南 <span aria-hidden="true">↗</span></a></div><div class="faq-list"><details open><summary>直播音频会被上传吗？<span aria-hidden="true">＋</span></summary><p>不会。产品的语音采集、识别和检测在本机完成，不需要将直播音频上传到云端。授权文件也可以离线导入。</p></details><details><summary>使用后直播会延迟吗？<span aria-hidden="true">＋</span></summary><p>会存在缓冲延迟。当前默认约 1.5 秒，用于给语音识别和回溯消音预留时间，实际体验会受设备性能影响。</p></details><details><summary>可以识别所有违规表达吗？<span aria-hidden="true">＋</span></summary><p>不能保证完全识别。识别效果受词表、模型、发音、环境噪声与设备性能影响。建议结合实际内容维护词表，并保留人工复核。</p></details><details><summary>为什么正常语句也可能被屏蔽？<span aria-hidden="true">＋</span></summary><p>词表和变体匹配可能产生误报。产品通过白名单和属性词上下文降低误报，但仍需要根据实际直播内容调整规则。</p></details><details><summary>必须安装虚拟声卡吗？<span aria-hidden="true">＋</span></summary><p>是。处理后的音频需要经虚拟声卡送入直播软件。首次使用请确认采集和输出设备采样率一致，建议均设为 48kHz。</p></details><details><summary>支持 Mac 吗？<span aria-hidden="true">＋</span></summary><p>当前版本仅支持 Windows 10 / 11 x64，不支持 macOS。</p></details><details><summary>如何激活正式版？<span aria-hidden="true">＋</span></summary><p>在“关于 - 授权信息”中复制机器码，联系授权方获取 license.key，导入后即可生效。当前提供 7 天试用。</p></details><details><summary>命中记录会长期保存吗？<span aria-hidden="true">＋</span></summary><p>当前界面展示本次运行的最近命中记录，重启后会清空，不作为长期审计档案。</p></details></div></div></section>
+  </main>
+
+  <section class="final-cta section-shell" aria-labelledby="cta-title"><div class="container final-cta-inner"><div><span class="section-tag">继续了解</span><h2 id="cta-title">从设备要求开始，<br>准备本地巡查。</h2></div><div><p>查看 Windows 版本、虚拟声卡与采样率要求。</p><a class="button button-primary button-large" href="./guide.html">打开使用指南<span aria-hidden="true">↗</span></a></div></div></section>
+  <footer class="site-footer"><div class="container footer-main"><a class="brand" href="./index.html"><img src="./favicon.ico" alt="" width="32" height="32" class="brand-icon"><span class="brand-copy"><strong>同心E站</strong><span>巡查卫士</span></span></a><p>面向 Windows 的本地离线直播语音巡查工具。</p><div class="footer-links"><a href="./features.html">产品能力</a><a href="./guide.html">使用指南</a><button type="button" data-open-license>授权说明</button><a href="./faq.html">常见问题</a></div></div><div class="container footer-bottom"><span>© 2026 同心E站. 保留所有权利。</span><span>识别与防护效果受实际环境影响，不构成合规保证。</span></div></footer>
+  <dialog class="info-dialog" id="license-dialog" aria-labelledby="license-dialog-title"><button class="dialog-close" type="button" aria-label="关闭授权说明">×</button><span class="section-tag">试用与授权</span><h2 id="license-dialog-title">先试用，再导入离线授权</h2><p>首次运行提供 7 天试用。正式授权与本机机器码绑定，无需网络验证或云端心跳。</p><ol class="license-steps"><li><span>1</span><div><strong>复制机器码</strong><p>打开“关于 - 授权信息”，复制本机机器码。</p></div></li><li><span>2</span><div><strong>获取授权文件</strong><p>将机器码提交给授权方，获取对应的 license.key。</p></div></li><li><span>3</span><div><strong>导入并启用</strong><p>在授权信息页导入文件，状态更新后开启实时防护。</p></div></li></ol><div class="dialog-notice">授权价格与联系方式将在正式渠道确认后补充，本页面不会收集机器码。</div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

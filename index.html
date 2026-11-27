@@ -29,6 +29,7 @@
       <div class="header-actions">
         <button class="button button-small button-outline desktop-only" type="button" data-open-license>授权说明</button>
         <a class="button button-small button-primary" href="./download.html">获取 Windows 版<span aria-hidden="true">↗</span></a>
+        <button class="page-view-toggle" id="page-view-toggle" type="button" aria-pressed="false" aria-label="开启整页 3D 空间视角" title="开启整页 3D 空间视角"><span aria-hidden="true">◇</span><span class="page-view-label">页面 3D</span></button>
         <button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-nav">
           <span></span><span></span>
         </button>
@@ -58,63 +59,112 @@
           <div class="ambient-ring" aria-hidden="true"></div>
           <div class="console-floor" aria-hidden="true"></div>
           <div class="console-depth" aria-hidden="true"></div>
-          <div class="app-window">
+          <div class="app-window product-ui">
             <span class="console-glare" aria-hidden="true"></span>
             <div class="window-bar">
               <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
               <span>同心E站巡查卫士 1.0</span>
               <div class="window-tools">
+                <span class="demo-badge">界面演示</span>
                 <button class="view-toggle" id="view-toggle" type="button" aria-pressed="false" aria-label="开启产品界面 3D 视角" title="开启 3D 视角后可移动鼠标转动界面"><span aria-hidden="true">◇</span>3D 视角</button>
-                <span class="window-local">本地离线</span>
               </div>
             </div>
-            <div class="app-layout">
-              <aside class="app-sidebar">
-                <div class="workspace-name"><img src="./favicon.ico" alt="" width="28" height="28"><span>巡查控制台</span></div>
-                <div class="sidebar-caption">控制台</div>
-                <button class="app-nav active" id="demo-tab-status" type="button" role="tab" aria-controls="demo-panel-status" aria-selected="true" tabindex="0" data-demo-tab="status"><span class="nav-symbol">◉</span>运行状态</button>
-                <button class="app-nav" id="demo-tab-hits" type="button" role="tab" aria-controls="demo-panel-hits" aria-selected="false" tabindex="-1" data-demo-tab="hits"><span class="nav-symbol">≡</span>命中记录<span class="nav-count">3</span></button>
-                <button class="app-nav" id="demo-tab-words" type="button" role="tab" aria-controls="demo-panel-words" aria-selected="false" tabindex="-1" data-demo-tab="words"><span class="nav-symbol">Aa</span>违规词表</button>
-                <div class="sidebar-bottom"><span class="status-dot"></span><span id="demo-status">音频链路已就绪</span></div>
-              </aside>
+            <div class="product-shell">
+              <div class="product-banner">
+                <div class="product-identity">
+                  <span class="product-logo"><img src="./favicon.ico" alt="" width="42" height="42"></span>
+                  <div><strong>同心E站巡查卫士</strong><span>实时语音合规网关 · 离线本地运行</span></div>
+                </div>
+                <div class="word-total"><span>已加载词表</span><strong>1,586</strong><small>条违禁词</small></div>
+              </div>
+              <div class="app-layout">
+                <aside class="app-sidebar" aria-label="产品演示导航">
+                  <div class="sidebar-caption">控制台</div>
+                  <div class="app-tab-list" role="tablist" aria-label="巡查卫士功能">
+                    <button class="app-nav active" id="demo-tab-status" type="button" role="tab" aria-controls="demo-panel-status" aria-selected="true" tabindex="0" data-demo-tab="status"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>运行状态</button>
+                    <button class="app-nav" id="demo-tab-hits" type="button" role="tab" aria-controls="demo-panel-hits" aria-selected="false" tabindex="-1" data-demo-tab="hits"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h10M9 12h10M9 19h10M4 5h.01M4 12h.01M4 19h.01"/></svg>命中记录<span class="nav-count">3</span></button>
+                    <button class="app-nav" id="demo-tab-words" type="button" role="tab" aria-controls="demo-panel-words" aria-selected="false" tabindex="-1" data-demo-tab="words"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"/></svg>违规词表</button>
+                    <button class="app-nav" id="demo-tab-about" type="button" role="tab" aria-controls="demo-panel-about" aria-selected="false" tabindex="-1" data-demo-tab="about"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>关于</button>
+                  </div>
+                  <div class="sidebar-bottom" id="sidebar-status"><span class="status-dot"></span><span id="demo-status">音频链路已就绪</span></div>
+                </aside>
               <div class="app-main">
                 <div class="demo-status-panel" id="demo-panel-status" role="tabpanel" aria-labelledby="demo-tab-status" data-demo-panel="status">
-                  <div class="demo-heading"><div><span class="demo-kicker">实时防护</span><p>音频经识别与检测，命中后回溯消音再输出。</p></div><button class="protection-toggle is-on" type="button" role="switch" aria-checked="true" aria-label="实时防护开关"><span></span></button></div>
-                  <div class="demo-modes" role="group" aria-label="屏蔽方式">
-                    <button type="button" class="active" data-mute="静音" aria-pressed="true">静音</button>
-                    <button type="button" data-mute="700Hz 哔声" aria-pressed="false">哔声</button>
-                    <button type="button" data-mute="白噪声" aria-pressed="false">白噪</button>
+                  <div class="demo-heading"><span class="panel-heading-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.4c0 4.6 3.1 7.8 7.5 9.6 4.4-1.8 7.5-5 7.5-9.6V6L12 3Z"/><path d="m8.8 12 2.1 2.1 4.4-4.5"/></svg></span><div><span class="demo-kicker">实时防护</span><p>音频经识别与检测，命中后回溯消音再输出。</p></div><button class="protection-toggle is-on" type="button" role="switch" aria-checked="true" aria-label="实时防护开关"><span></span></button></div>
+                  <div class="protection-controls">
+                    <span class="mute-emblem"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></span>
+                    <div class="demo-modes" role="group" aria-label="屏蔽方式">
+                      <button type="button" class="active" data-mute="静音" aria-pressed="true">静音</button>
+                      <button type="button" data-mute="700Hz 哔声" aria-pressed="false">哔声</button>
+                      <button type="button" data-mute="白噪声" aria-pressed="false">白噪</button>
+                    </div>
                   </div>
-                  <div class="audio-route"><span>麦克风</span><b>→</b><span>本地 ASR</span><b>→</b><span>回溯消音</span><b>→</b><span>虚拟声卡</span></div>
-                  <div class="transcript-card">
+                  <p class="mode-description" id="mode-description">静音 · −80 dBFS · 哔声 700 Hz · 白噪 DTX 补齐</p>
+                  <div class="audio-chain-card">
+                    <div class="product-card-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 12h2l2-4 3 8 2-4h2"/></svg><strong>音频链路</strong><span>本机处理</span></div>
+                    <div class="device-grid">
+                      <div class="device-field"><span>采集设备 · 麦克风</span><div class="device-value">本机麦克风<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></div></div>
+                      <div class="device-field"><span>输出设备 · 虚拟声卡</span><div class="device-value">CABLE Input<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></div></div>
+                      <div class="device-field"><span>识别模型</span><div class="device-value">中英双语 2023<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></div></div>
+                    </div>
+                  </div>
+                  <div class="demo-monitor-grid">
+                    <div class="transcript-card">
                     <div class="transcript-top"><span>实时识别</span><span class="live-label"><i></i>演示数据</span></div>
                     <p id="demo-transcript">欢迎来到今天的直播间，感谢大家的支持。</p>
                     <div class="waveform" id="waveform" aria-hidden="true">
                       <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
                     </div>
                   </div>
-                  <div class="demo-bottom"><div><span>输入电平</span><strong>−18 dB</strong><div class="meter"><i></i></div></div><div><span>当前模式</span><strong id="current-mute">静音</strong><small>−80 dBFS</small></div></div>
-                  <button class="demo-run" id="run-demo" type="button"><span aria-hidden="true">▶</span>播放巡查演示</button>
+                    <div class="input-level-card">
+                      <div class="product-card-title"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17v3M9 13v7M14 8v12M19 4v16"/></svg><strong>输入电平</strong></div>
+                      <div class="level-row"><span>PEAK</span><div class="level-track"><i></i></div></div>
+                      <div class="level-row"><span>RMS</span><div class="level-track"><i></i></div></div>
+                      <strong class="level-value">−18.0 <small>dBFS</small></strong>
+                    </div>
+                  </div>
+                  <div class="demo-actions"><span>当前模式 <strong id="current-mute">静音</strong></span><button class="demo-run" id="run-demo" type="button"><span aria-hidden="true">▶</span>播放巡查演示</button></div>
                 </div>
                 <div class="demo-data-panel" id="demo-panel-hits" role="tabpanel" aria-labelledby="demo-tab-hits" data-demo-panel="hits" hidden>
-                  <div class="demo-kicker">命中记录</div><p class="panel-description">本次运行最近 200 条，以下为演示数据。</p>
-                  <div class="hit-list">
-                    <div><time>14:32:08</time><strong>示例命中词</strong><span>违禁词</span><em>拼音 / 谐音</em></div>
-                    <div><time>14:30:41</time><strong>示例命中词</strong><span>平台违禁词</span><em>去分隔符</em></div>
-                    <div><time>14:28:16</time><strong>示例命中词</strong><span>自定义</span><em>精确匹配</em></div>
+                  <div class="data-panel-heading"><span class="panel-heading-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg></span><div><span class="demo-kicker">命中记录</span><p>最近 200 条 · 命中词 / 类别 / 匹配方式</p></div><span class="sample-badge">演示数据</span></div>
+                  <div class="product-table-wrap">
+                    <table class="product-table hit-table"><thead><tr><th>时间</th><th>命中词</th><th>类别</th><th>匹配方式</th></tr></thead><tbody>
+                      <tr><td>14:32:08</td><td>示例命中词</td><td>违禁词</td><td>拼音 / 谐音</td></tr>
+                      <tr><td>14:30:41</td><td>示例命中词</td><td>平台违禁词</td><td>去分隔符</td></tr>
+                      <tr><td>14:28:16</td><td>示例命中词</td><td>自定义</td><td>精确匹配</td></tr>
+                    </tbody></table>
                   </div>
                   <p class="panel-note">重启后记录清空，不作为长期审计档案。</p>
                 </div>
                 <div class="demo-data-panel" id="demo-panel-words" role="tabpanel" aria-labelledby="demo-tab-words" data-demo-panel="words" hidden>
-                  <div class="demo-kicker">违规词表</div><p class="panel-description">词条保存在本地，可按直播内容调整。</p>
-                  <div class="word-row"><span>示例词条 A</span><em>平台违禁词</em><button type="button" aria-label="删除示例词条 A">×</button></div>
-                  <div class="word-row"><span>示例词条 B</span><em>自定义</em><button type="button" aria-label="删除示例词条 B">×</button></div>
-                  <div class="word-row"><span>示例词条 C</span><em>宣传违禁词</em><button type="button" aria-label="删除示例词条 C">×</button></div>
-                  <div class="word-add"><span>＋ 添加违规词</span><small>界面演示</small></div>
+                  <div class="data-panel-heading"><span class="panel-heading-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"/></svg></span><div><span class="demo-kicker">违规词表</span><p>词条保存在本地，可按直播内容调整。</p></div><span class="sample-badge">界面演示</span></div>
+                  <div class="word-toolbar"><input type="text" placeholder="输入要添加的违规词，回车或点「添加」" aria-label="违规词输入演示" readonly><button class="product-button product-button-primary" type="button" data-word-add>添加</button><button class="product-button" type="button" data-word-remove>删除选中</button></div>
+                  <div class="product-table-wrap word-table-wrap">
+                    <table class="product-table word-table"><thead><tr><th>词</th><th>类别</th><th><span class="sr-only">操作</span></th></tr></thead><tbody>
+                      <tr><td>示例词条 A</td><td><span class="category-tag">平台违禁词</span></td><td><button type="button" aria-label="删除示例词条 A">×</button></td></tr>
+                      <tr><td>示例词条 B</td><td><span class="category-tag">自定义</span></td><td><button type="button" aria-label="删除示例词条 B">×</button></td></tr>
+                      <tr><td>示例词条 C</td><td><span class="category-tag">宣传违禁词</span></td><td><button type="button" aria-label="删除示例词条 C">×</button></td></tr>
+                    </tbody></table>
+                  </div>
+                  <p class="panel-note">此处仅展示界面，不会修改实际设备的违规词表。</p>
+                </div>
+                <div class="demo-data-panel" id="demo-panel-about" role="tabpanel" aria-labelledby="demo-tab-about" data-demo-panel="about" hidden>
+                  <div class="about-product-card">
+                    <div class="about-product-head"><span class="product-logo"><img src="./favicon.ico" alt="" width="44" height="44"></span><div><strong>同心E站巡查卫士</strong><span>实时语音合规网关 · 离线本地版</span></div></div>
+                    <dl class="product-meta"><div><dt>版本</dt><dd>1.0.0.0</dd></div><div><dt>开发授权</dt><dd>同心E站</dd></div><div><dt>运行方式</dt><dd>本地离线 · 无网络 · 无云端</dd></div><div><dt>核心技术</dt><dd>sherpa-onnx 流式 ASR · 回溯消音引擎</dd></div></dl>
+                  </div>
+                  <div class="about-option"><div><strong>界面主题</strong><span>选择喜欢的风格，下次启动自动保持。</span></div><button type="button" data-theme-demo>云岭青绿 · 浅色青绿渐变 <span aria-hidden="true">⌄</span></button></div>
+                  <div class="license-product-card">
+                    <div class="license-card-head"><div><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/></svg><strong>授权信息</strong></div><span class="authorized-badge">已授权 · 示例</span></div>
+                    <dl class="product-meta"><div><dt>当前状态</dt><dd>授权：永久 · 演示授权</dd></div><div><dt>机器码</dt><dd>QLK-XXXX-XXXX-XXXX</dd></div><div><dt>授权人</dt><dd>界面演示用户</dd></div><div><dt>到期时间</dt><dd>永久授权</dd></div></dl>
+                    <button class="product-button product-button-primary license-import" type="button" data-dialog-license><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5"/></svg>导入 license.key</button>
+                    <p>导入后立即生效，无需重启。本演示不会读取任何文件。</p>
+                  </div>
+                </div>
                 </div>
               </div>
+              <div class="window-footer"><span class="status-dot"></span><span>本地离线</span><span>·</span><span>麦克风 → 延迟缓冲 → 流式 ASR → 敏感词检测 → 回溯消音 → 虚拟声卡 → 直播软件</span><span class="footer-privacy">无网络 · 无云端 · 数据不出本机</span></div>
             </div>
-            <div class="window-footer"><span class="status-dot"></span>48,000 Hz <span>·</span> <span data-footer-mute>静音</span> <span>·</span> 延迟缓冲约 1.5 秒</div>
           </div>
           <div class="floating-notice" id="hit-notice" hidden><span>!</span><div><strong>命中已回溯处理</strong><small>演示：对应语音区间已覆盖</small></div></div>
         </div>

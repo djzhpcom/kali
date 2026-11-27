@@ -75,6 +75,12 @@
     'noise': 'noise'
   };
   const muteLabels = { mute: '静音', beep: '哔声', noise: '白噪' };
+  const muteDescriptions = {
+    mute: '静音 · −80 dBFS · 命中区间完全静音',
+    beep: '哔声 · 700 Hz · 命中区间播放提示音',
+    noise: '白噪 · DTX 补齐 · 命中区间播放白噪声'
+  };
+  const modeDescription = document.querySelector('#mode-description');
   const setMute = (mode) => {
     mode = muteAliases[mode] || mode;
     if (!muteLabels[mode]) return;
@@ -84,6 +90,7 @@
       button.setAttribute('aria-pressed', String(selected));
     });
     if (currentMute) currentMute.textContent = muteLabels[mode];
+    if (modeDescription) modeDescription.textContent = muteDescriptions[mode];
     document.querySelectorAll('[data-mode-card]').forEach((card) => {
       const selected = muteAliases[card.dataset.modeCard] === mode;
       card.classList.toggle('active', selected);
@@ -241,9 +248,19 @@
     demoTimers.push(window.setTimeout(stopDemo, 4100));
   });
 
-  document.querySelectorAll('.word-row button').forEach((button) => {
+  document.querySelectorAll('.word-table button').forEach((button) => {
     button.addEventListener('click', () => {
       showToast('这是界面演示，不会修改实际设备的违规词表。');
+    });
+  });
+  document.querySelectorAll('[data-word-add], [data-word-remove]').forEach((button) => {
+    button.addEventListener('click', () => {
+      showToast('这是界面演示，不会修改实际设备的违规词表。');
+    });
+  });
+  document.querySelectorAll('[data-theme-demo]').forEach((button) => {
+    button.addEventListener('click', () => {
+      showToast('官网展示默认的云岭青绿主题，实际主题请在桌面程序中切换。');
     });
   });
 
@@ -289,6 +306,94 @@
     toastTimer = window.setTimeout(() => {
       toast.hidden = true;
     }, 4200);
+  }
+
+  const pageViewToggle = document.querySelector('#page-view-toggle');
+  const pageSections = [...document.querySelectorAll('.section-shell')];
+  let savedPageView = '';
+  try {
+    savedPageView = sessionStorage.getItem('liveguard-page-view') || '';
+  } catch {}
+  let page3dEnabled = false;
+  let pageTiltFrame = 0;
+  let pendingPageTilt = null;
+
+  const clearSectionTilt = (section) => {
+    section.style.removeProperty('--section-x');
+    section.style.removeProperty('--section-y');
+  };
+
+  const resetPageTilt = () => {
+    window.cancelAnimationFrame(pageTiltFrame);
+    pageTiltFrame = 0;
+    pendingPageTilt = null;
+    pageSections.forEach(clearSectionTilt);
+  };
+
+  const setPageView = (enabled, persist = true) => {
+    page3dEnabled = enabled;
+    document.body.classList.toggle('page-3d', enabled);
+    pageViewToggle?.setAttribute('aria-pressed', String(enabled));
+    if (pageViewToggle) {
+      pageViewToggle.setAttribute('aria-label', enabled ? '关闭整页 3D 空间视角' : '开启整页 3D 空间视角');
+      pageViewToggle.title = enabled ? '关闭整页 3D，恢复平面页面' : '开启整页 3D，移动鼠标查看空间层次';
+    }
+    if (!enabled) resetPageTilt();
+    if (persist) {
+      try {
+        sessionStorage.setItem('liveguard-page-view', enabled ? '3d' : 'flat');
+      } catch {}
+    }
+  };
+
+  if (pageViewToggle) {
+    setPageView(savedPageView === '3d' ? true : savedPageView === 'flat' ? false : finePointer.matches && !motionPreference.matches, false);
+    pageViewToggle.addEventListener('click', () => {
+      setPageView(!page3dEnabled);
+      showToast(page3dEnabled
+        ? motionPreference.matches ? '整页 3D 空间视角已开启，当前为静态展示。' : '整页 3D 空间视角已开启，移动鼠标查看空间层次。'
+        : '已恢复平面页面。');
+    });
+
+    pageSections.forEach((section) => {
+      section.addEventListener('pointermove', (event) => {
+        if (!page3dEnabled || motionPreference.matches || event.pointerType !== 'mouse') return;
+        const rect = section.getBoundingClientRect();
+        const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+        const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+        pendingPageTilt = { section, x, y };
+        if (pageTiltFrame) return;
+        pageTiltFrame = window.requestAnimationFrame(() => {
+          pageTiltFrame = 0;
+          if (!pendingPageTilt) return;
+          const { section: target, x: pointerX, y: pointerY } = pendingPageTilt;
+          target.style.setProperty('--section-x', `${((0.5 - pointerY) * 2.2).toFixed(2)}deg`);
+          target.style.setProperty('--section-y', `${((pointerX - 0.5) * 3).toFixed(2)}deg`);
+          pendingPageTilt = null;
+        });
+      });
+      section.addEventListener('pointerleave', (event) => {
+        if (event.pointerType !== 'mouse') return;
+        clearSectionTilt(section);
+        if (pendingPageTilt?.section === section) pendingPageTilt = null;
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!page3dEnabled) return;
+      window.cancelAnimationFrame(pageTiltFrame);
+      pageTiltFrame = window.requestAnimationFrame(() => {
+        pendingPageTilt = null;
+        pageSections.forEach(clearSectionTilt);
+        pageTiltFrame = 0;
+      });
+    }, { passive: true });
+    finePointer.addEventListener('change', (event) => {
+      if (!event.matches) setPageView(false);
+    });
+    motionPreference.addEventListener('change', (event) => {
+      if (event.matches) setPageView(false);
+    });
   }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
